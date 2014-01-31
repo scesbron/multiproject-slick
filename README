@@ -1,4 +1,20 @@
-This is your new Play application
-=====================================
+Play project with subproject and play-slick
+===========================================
 
-This file will be packaged with your application, when using `play dist`.
+This is a project to showcase a problem when doing tests with play-slick on a subproject
+
+To verify the problem just do
+
+    play test
+
+For the UserSpec test the error is
+
+    Configuration error[Cannot connect to database [default]] (Configuration.scala:92)
+
+this is normal because the database does not exists
+
+But for the CoreUserSpec test that is in the core subproject the error is
+
+    Configuration error[Slick error : jdbc driver not defined in application.conf for db.default.driver key]
+
+it seems that in this case play-slick cannot retrieve the configuration file
